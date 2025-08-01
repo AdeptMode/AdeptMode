@@ -1,0 +1,208 @@
+/* Enhanced Mind Maps Styling */
+
+/* Smooth animations for all mind map elements */
+.mind-map-node {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mind-map-node:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Selected node styling */
+.mind-map-node.selected {
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.3), 0 12px 24px rgba(147, 51, 234, 0.2);
+  animation: pulse-ring 2s infinite;
+}
+
+/* Pulse animation for selected nodes */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4), 0 12px 24px rgba(147, 51, 234, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0), 0 12px 24px rgba(147, 51, 234, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0), 0 12px 24px rgba(147, 51, 234, 0.2);
+  }
+}
+
+/* Connection lines styling */
+.mind-map-connection {
+  stroke: #9333ea;
+  stroke-width: 2;
+  stroke-dasharray: 5, 5;
+  animation: dash 2s linear infinite;
+  filter: drop-shadow(0 2px 4px rgba(147, 51, 234, 0.3));
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/* Floating background elements */
+.floating-element {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(147, 51, 234, 0.1), rgba(79, 70, 229, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* Explanation panel styling */
+.explanation-panel {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Custom scrollbar for explanation panel */
+.explanation-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explanation-panel::-webkit-scrollbar-track {
+  background: rgba(243, 244, 246, 0.5);
+  border-radius: 10px;
+}
+
+.explanation-panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #d8b4fe, #c084fc);
+  border-radius: 10px;
+}
+
+.explanation-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #c084fc, #a855f7);
+}
+
+/* Zoom controls styling */
+.zoom-controls {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Instructions panel styling */
+.instructions-panel {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading spinner enhancement */
+.loading-spinner {
+  border: 3px solid rgba(147, 51, 234, 0.2);
+  border-top: 3px solid #9333ea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Gradient text effects */
+.gradient-text {
+  background: linear-gradient(135deg, #9333ea, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button hover effects */
+.mind-map-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mind-map-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.mind-map-button:hover::before {
+  left: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mind-map-node {
+    font-size: 0.875rem;
+    padding: 8px 12px;
+  }
+
+  .explanation-panel {
+    width: 90vw;
+    max-width: none;
+    bottom: 2rem;
+    right: 5vw;
+    left: 5vw;
+  }
+
+  .instructions-panel {
+    font-size: 0.75rem;
+    padding: 12px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .mind-map-node {
+    background: rgba(30, 30, 30, 0.9);
+    color: white;
+    border-color: rgba(147, 51, 234, 0.3);
+  }
+
+  .explanation-panel {
+    background: rgba(30, 30, 30, 0.95);
+    color: white;
+  }
+
+  .instructions-panel {
+    background: rgba(30, 30, 30, 0.95);
+    color: white;
+  }
+}
